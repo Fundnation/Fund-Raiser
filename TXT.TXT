@@ -1,0 +1,2 @@
+$ mkdir my_project && cd my_project
+$ echo '{ "dfx": "0.9.3" }' > dfx.json
