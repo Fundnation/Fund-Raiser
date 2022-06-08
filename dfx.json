@@ -1,19 +1,19 @@
 {
   "canisters": {
-    "hello": {
-      "main": "src/hello/main.mo",
+    "escrow_manager": {
+      "main": "src/escrow_manager/main.mo",
       "type": "motoko"
     },
-    "hello_assets": {
+    "escrow_manager_assets": {
       "dependencies": [
-        "hello"
+        "escrow_manager"
       ],
       "frontend": {
-        "entrypoint": "src/hello_assets/src/index.html"
+        "entrypoint": "src/escrow_manager_assets/src/index.html"
       },
       "source": [
-        "src/hello_assets/assets",
-        "dist/hello_assets/"
+        "src/escrow_manager_assets/assets",
+        "dist/escrow_manager_assets/"
       ],
       "type": "assets"
     }
