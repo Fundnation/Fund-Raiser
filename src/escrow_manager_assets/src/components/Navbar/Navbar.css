@@ -1,0 +1,5 @@
+.btn-effect:hover{
+    color: rgba(194, 15, 162, 1);
+    background-color: transparent;
+    border: 1px solid rgba(194, 15, 162, 1);
+}

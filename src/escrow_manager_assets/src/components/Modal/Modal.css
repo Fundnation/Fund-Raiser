@@ -1,0 +1,26 @@
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(28, 4, 58, 0.584); /* Black w/ opacity */
+    transform: scale(1.15);
+    
+    
+  }
+  
+  /* Modal Content/Box */
+  .modal_content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 15% from the top and centered */
+    width: 30%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+    transition: all 0.3s ease-out;
+    padding: 10px 15px;
+    position: relative;
+   
+  }

@@ -1,39 +1,22 @@
-import * as React from "react";
-import { render } from "react-dom";
-import { escrow_manager } from "../../declarations/escrow_manager/index";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { ChakraProvider } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react';
+import theme from './components/theme';
 
-const MyHello = () => {
-  const [name, setName] = React.useState("");
-  const [message, setMessage] = React.useState("");
 
-  async function doGreet() {
-    const greeting = await escrow_manager.greet(name);
-    setMessage(greeting);
-  }
+const root = ReactDOM.createRoot(document.getElementById('app'));
+root.render(
+  <React.StrictMode>
+    <ChakraProvider>
+      <App theme={theme}/>
+    </ChakraProvider>
+  </React.StrictMode>
+);
 
-  return (
-    <div style={{ fontSize: "30px" }}>
-      <div style={{ backgroundColor: "yellow" }}>
-        <p>Greetings, from DFINITY!</p>
-        <p>
-          {" "}
-          Type your message in the Name input field, then click{" "}
-          <b> Get Greeting</b> to display the result.
-        </p>
-      </div>
-      <div style={{ margin: "30px" }}>
-        <input
-          id="name"
-          value={name}
-          onChange={(ev) => setName(ev.target.value)}
-        ></input>
-        <button onClick={doGreet}>Get Greeting!</button>
-      </div>
-      <div>
-        Greeting is: "<span style={{ color: "blue" }}>{message}</span>"
-      </div>
-    </div>
-  );
-};
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 
-render(<MyHello />, document.getElementById("app"));
