@@ -5,18 +5,12 @@ type definite_canister_settings =
    freezing_threshold: nat;
    memory_allocation: nat;
  };
-type Time = int;
 type ProjectId = nat;
-type NFTInfo = 
- record {
-   number: nat;
-   priceE8S: nat;
- };
 type CanisterIdText = text;
 service : {
   acceptCycles: () -> ();
   availableCycles: () -> (nat) query;
-  createEscrowCanister: (ProjectId, principal, vec NFTInfo, Time, nat) -> ();
+  createEscrowCanister: (ProjectId, principal) -> ();
   getProjectEscrowCanisterPrincipal: (ProjectId) ->
    (opt CanisterIdText) query;
   test: () -> (definite_canister_settings);

@@ -1,0 +1,149 @@
+type UserId__1 = principal;
+type UserId = principal;
+type Project__1 = 
+ record {
+   category: text;
+   cover: Link;
+   description: text;
+   goal: float64;
+   id: ProjectId;
+   owner: UserId;
+   rewards: text;
+   status: ProjectStatus;
+   story: text;
+   tags: vec text;
+   title: text;
+   walletId: text;
+ };
+type ProjectWithOwner = 
+ record {
+   owner: Profile__1;
+   project: Project__1;
+ };
+type ProjectStatus__1 = 
+ opt variant {
+       approved;
+       fully_funded;
+       live;
+       submitted;
+       whitelist;
+     };
+type ProjectStatus = 
+ opt variant {
+       approved;
+       fully_funded;
+       live;
+       submitted;
+       whitelist;
+     };
+type ProjectState = 
+ variant {
+   closed;
+   live;
+   noproject;
+   whitelist: vec principal;
+ };
+type ProjectId__1 = text;
+type ProjectId = text;
+type Project = 
+ record {
+   category: text;
+   cover: Link;
+   description: text;
+   goal: float64;
+   id: ProjectId;
+   owner: UserId;
+   rewards: text;
+   status: ProjectStatus;
+   story: text;
+   tags: vec text;
+   title: text;
+   walletId: text;
+ };
+type Profile__1 = 
+ record {
+   bio: text;
+   firstName: text;
+   id: UserId;
+   img: Link;
+   lastName: text;
+ };
+type Profile = 
+ record {
+   bio: text;
+   firstName: text;
+   id: UserId;
+   img: Link;
+   lastName: text;
+ };
+type NewUserProfile = 
+ record {
+   bio: text;
+   firstName: text;
+   img: Link;
+   lastName: text;
+ };
+type NewProject = 
+ record {
+   category: text;
+   cover: Link;
+   description: text;
+   goal: float64;
+   rewards: text;
+   story: text;
+   tags: vec text;
+   title: text;
+   walletId: text;
+ };
+type MarketplaceLinks = vec MarketplaceLink;
+type MarketplaceLink = 
+ variant {
+   ccc: Link;
+   entrepot: Link;
+   other: Link;
+ };
+type Link = text;
+type Date = text;
+service : {
+  addWhitelist: (ProjectId__1, vec principal) -> ();
+  adminCreateProfile: (principal, NewUserProfile) -> ();
+  adminCreateProject: (principal, NewProject) -> (Project);
+  approveProject: (ProjectId__1) -> ();
+  archiveProject: (ProjectId__1) -> ();
+  closeProject: (ProjectId__1) -> ();
+  createFirstProject: (NewUserProfile, NewProject) -> (Project);
+  createProfile: (NewUserProfile) -> ();
+  createProject: (NewProject) -> (Project);
+  deleteProject: (ProjectId__1) -> (opt Project);
+  getLaunchDate: (ProjectId__1) -> (opt Date) query;
+  getMarketplaceLinks: (ProjectId__1) -> (MarketplaceLinks) query;
+  getMyProfile: () -> (Profile) query;
+  getMyProjects: () -> (vec Project) query;
+  getOwnId: () -> (UserId__1) query;
+  getOwnIdText: () -> (text) query;
+  getProfile: (UserId__1) -> (Profile) query;
+  getProject: (ProjectId__1) -> (Project) query;
+  getProjectState: (ProjectId__1) -> (ProjectState) query;
+  getProjectWithOwner: (ProjectId__1) -> (ProjectWithOwner) query;
+  getProjectWithOwnerAndMarketplace: (ProjectId__1) ->
+   (record {
+      marketplaceLinks: MarketplaceLinks;
+      owner: Profile;
+      project: Project;
+    }) query;
+  getProjects: (UserId__1) -> (vec Project) query;
+  getWhitelist: (ProjectId__1) -> (vec principal) query;
+  greet: () -> (text);
+  healthcheck: () -> (bool);
+  isAdmin: () -> (bool) query;
+  listProjects: (vec ProjectStatus__1) -> (vec ProjectWithOwner) query;
+  pay: (nat64, ProjectId__1) -> () oneway;
+  putLaunchDate: (ProjectId__1, Date) -> ();
+  resetWhitelist: (ProjectId__1) -> ();
+  searchProfiles: (text) -> (vec Profile) query;
+  setMarketplaceLinks: (ProjectId__1, MarketplaceLinks) -> ();
+  setProjectFullyFunded: (ProjectId__1) -> ();
+  unapproveProject: (ProjectId__1) -> ();
+  updateProfile: (Profile) -> ();
+  updateProject: (Project) -> ();
+}
