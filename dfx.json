@@ -11,14 +11,14 @@
             "wasm": "ledger.wasm",
             "candid": "ledger.public.did"
         },
-        "escrow_manager_assets": {
+        "fundnatioin_assets": {
             "dependencies": ["fundnation"],
             "frontend": {
-                "entrypoint": "src/escrow_manager_assets/src/index.html"
+                "entrypoint": "src/fundnatioin_assets/src/index.html"
             },
             "source": [
-                "src/escrow_manager_assets/assets",
-                "dist/escrow_manager_assets/"
+                "src/fundnatioin_assets/assets",
+                "dist/fundnatioin_assets/"
             ],
             "type": "assets"
         }

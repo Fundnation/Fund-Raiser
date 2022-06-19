@@ -38,7 +38,7 @@ const canisterEnvVariables = initCanisterEnv();
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
-const frontendDirectory = "escrow_manager_assets";
+const frontendDirectory = "fundnatioin_assets";
 
 const asset_entry = path.join("src", frontendDirectory, "src", "index.html");
 
