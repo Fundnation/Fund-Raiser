@@ -7,11 +7,18 @@ import { Link } from "react-router-dom";
 import connect from "../../helpers/connectWallet";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useGlobalContext } from "../../context";
 
-const Navbar = () => {
+const Navbar = ()  => {
+  const {setActor} =  useGlobalContext()
   const [wallet, setWallet] = useState(null);
   useEffect(() => {
-    console.log(wallet)
+    // console.log(wallet)
+    setActor((prev)=>{
+      console.log("wallet",wallet)
+      return wallet
+    })
+    
   }, [wallet]);
   const connectWallet = async () => {
     setWallet(await connect());
@@ -27,6 +34,14 @@ const Navbar = () => {
             src={logo}
             alt="logo"
           />
+          {/* <Button onClick={async()=>{
+          try {
+             const payer = await  wallet.pay(1, "12345");
+             console.log(payer)
+          } catch (error) {
+            console.error(error)
+          }
+          }}>Pay</Button> */}
           <Button
             borderRadius="50px"
             color="rgba(92, 88, 102, 1)"

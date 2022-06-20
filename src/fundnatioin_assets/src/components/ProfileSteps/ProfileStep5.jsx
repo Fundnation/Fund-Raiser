@@ -1,8 +1,30 @@
 import React from 'react'
 import { Box,Text, Textarea, Button} from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStep5 } from '../features/createProjectSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useState, useRef } from 'react';
+import './ProfileStep.css'
 
 const ProfileStep5 = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [fundraiseReason, setFundRaiseReason] = useState()
+  const nextPage = ()=>{
+    if(fundraiseReason){
+      console.log(fundraiseReason)
+       dispatch(updateStep5({ fundraiseReason, fundraiseReason}))
+       toast.success("Success!");
+     navigate("/profile/step6", { replace: true })
+    }else{
+     toast.error("Please fill all the field!");
+    }
+  }
+  const ref = useRef(null)
+  
   return (
    <Box mb='10px'>
       <Text
@@ -29,9 +51,10 @@ const ProfileStep5 = () => {
           lineHeight='18px'
           h='15rem'
           m='20px 0'
+          onChange={(e)=>{setFundRaiseReason(e.target.value)}}
        >
        </Textarea>
-       <Link to='/profile/step6'>
+
          <Button 
           m='5px 0 5px 0' 
           w='100%' 
@@ -39,8 +62,10 @@ const ProfileStep5 = () => {
           fontSize='16px'
           lineHeight='24px'
           color='white'
-          bg='rgba(194, 15, 162, 1)'>Submit</Button>
-       </Link>
+          bg='rgba(194, 15, 162, 1)'
+          onClick={nextPage}
+          >Submit</Button>
+     
         <Link to='/profile/step4'>
           <Text
             fontSize='15px'
@@ -60,6 +85,17 @@ const ProfileStep5 = () => {
             w='300px'
             m='0 auto'
           >By continuing, you agree to Fundnation Terms and acknowledge receipt of our Privacy Policy.</Text>
+     <ToastContainer 
+             position="top-center"
+             autoClose={1000}
+             hideProgressBar={false}
+             newestOnTop={false}
+             closeOnClick
+             rtl={false}
+             pauseOnFocusLoss
+             draggable
+             pauseOnHover
+         />
    </Box>
   )
 }

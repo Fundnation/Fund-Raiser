@@ -341,7 +341,7 @@ actor FundNation {
 
 
     // You need to input the ledger canister thats created
-    let Ledger = actor "renrk-eyaaa-aaaaa-aaada-cai" : actor { 
+    let Ledger = actor "rrkah-fqaaa-aaaaa-aaaaq-cai" : actor { 
         send_dfx : shared SendArgs -> async Nat64;
         account_balance_dfx : shared query AccountBalanceArgs -> async ICPTs; //ledger canister
     };
@@ -350,7 +350,7 @@ actor FundNation {
     };
     func pay_func(amount : Nat64, projectId : ProjectId) : async (){
         let defaultAccountId = Account.getAccountId(getPrincipal(), Utils.defaultSubaccount());
-        let ledger_id = Principal.fromText("");
+        let ledger_id = Principal.fromText("ykvog-riaaa-aaaak-qaqxq-cai");
         let ledger_acc = Account.getAccountId(ledger_id, Utils.defaultSubaccount());
 
         func destruct() : async Text {

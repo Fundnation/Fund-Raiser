@@ -1,8 +1,30 @@
 import React from 'react'
 import {Box, Text, Input, UnorderedList, ListItem, Button} from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStep3 } from '../features/createProjectSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 const ProfileStep3 = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [amount, setAmount] = useState()
+
+  const nextPage = ()=>{
+    if(amount){
+      
+      console.log(amount)
+       dispatch(updateStep3({ amount: amount }))
+       toast.success("Success!");
+      navigate("/profile/step4", { replace: true })
+    }else{
+     toast.error("Please fill all the field!");
+    }
+  }
+
   return (
     <Box mb='15px'>
         <Text
@@ -27,6 +49,7 @@ const ProfileStep3 = () => {
        color='rgba(54, 49, 61, 1)' 
        placeholder='Enter the goal amount' 
        w='100%' 
+       onChange={(e)=>setAmount(e.target.value)}
        m='0px 0'/>
        <Text
           color='rgba(69, 67, 82, 1)'
@@ -60,7 +83,7 @@ const ProfileStep3 = () => {
            >A Plug wallet or Stoic wallet</ListItem>
        </UnorderedList>
        </Box>
-     <Link to='/profile/step4'>
+
         <Button 
           m='50px 0 10px 0' 
           w='100%' 
@@ -68,8 +91,10 @@ const ProfileStep3 = () => {
           fontSize='16px'
           lineHeight='24px'
           color='white'
-          bg='rgba(194, 15, 162, 1)'>Next</Button>
-      </Link>  
+          bg='rgba(194, 15, 162, 1)'
+          onClick={nextPage}
+          >Next</Button>
+     
       <Link to='/profile/step2'>
           <Text
             fontSize='15px'
@@ -89,6 +114,17 @@ const ProfileStep3 = () => {
             w='300px'
             m='0 auto'
           >By continuing, you agree to Fundnation Terms and acknowledge receipt of our Privacy Policy.</Text>
+          <ToastContainer 
+             position="top-center"
+             autoClose={1000}
+             hideProgressBar={false}
+             newestOnTop={false}
+             closeOnClick
+             rtl={false}
+             pauseOnFocusLoss
+             draggable
+             pauseOnHover
+         />
     </Box>
   )
 }
