@@ -30,17 +30,19 @@ const connect = async () => {
     // const stats = await NNSUiActor.getMyProfile();
     // // const stats = await NNSUiActor;
     // console.log("NNS stats", stats);
-    NNSUiActor.createProject({
-      title: "Common",
-      goal: new BigNumber(42),
-      cover: "html",
-      tags: ["health"],
-      description: "ksdjfsjfd",
-      story: "fksdjfkjsdfjkds",
-      links: "dklskfdklf",
-      category: "ksdflksflks",
-      walletId: window.ic.plug.accountId,
-    });
+  //  const act = await NNSUiActor.createProject({
+  //     title: "Common",
+  //     // status:"live",
+  //     goal: 42.00,
+  //     cover: "html",
+  //     tags: ["health"],
+  //     description: "ksdjfsjfd",
+  //     story: "fksdjfkjsdfjkds",
+  //     rewards: "dklskfdklf",
+  //     category: "ksdflksflks",
+  //     walletId: window.ic.plug.accountId,
+  //   });
+  //   console.log("Projects", act)
     return NNSUiActor;
   } catch (e) {
     console.log(e);

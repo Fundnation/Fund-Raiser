@@ -8,20 +8,33 @@ import connect from "../../helpers/connectWallet";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useGlobalContext } from "../../context";
+import { updateActor } from "../features/createProjectSlice";
+import { useSelector, useDispatch } from "react-redux";
 
-const Navbar = ()  => {
-  const {setActor} =  useGlobalContext()
+const Navbar = () => {
+  // const {setActor, actor} =  useGlobalContext()
+  const dispatch = useDispatch();
+  const { actor } = useSelector((state) => state.create);
   const [wallet, setWallet] = useState(null);
   useEffect(() => {
     // console.log(wallet)
-    setActor((prev)=>{
-      console.log("wallet",wallet)
-      return wallet
-    })
-    
+    if (wallet) {
+      dispatch(
+        updateActor({
+          actor: wallet,
+        })
+      );
+    }
   }, [wallet]);
+  useEffect(() => {
+    console.log("Actor", actor);
+  }, [actor]);
   const connectWallet = async () => {
-    setWallet(await connect());
+    try {
+      setWallet(await connect()); 
+    } catch (error) {
+      console.error(error)
+    }
   };
   return (
     <Box m="0 30px">

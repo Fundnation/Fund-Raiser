@@ -1,63 +1,76 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialState ={
-   firstName :'opp',
-   lastName:'',
-   img:'',
-   fundraiseText:'',
-   twitter:'',
-   discord:'',
-   category:'',
-   name:'',
-   amount:'',
-   youtube:'',
-   fundraiseReason:'',
+const initialState = {
+    actor: "",
+    firstName: 'opp',
+    lastName: '',
+    img: '',
+    fundraiseText: '',
+    twitter: '',
+    discord: '',
+    category: '',
+    name: '',
+    amount: '',
+    youtube: '',
+    fundraiseReason: '',
 }
 
 const createProjectSlice = createSlice({
-    name:'create',
+    name: 'create',
     initialState,
-    reducers:{
-        updateStep1: (state, action)=>{
-            console.log(action)
-            return{
+    reducers: {
+        updateActor: (state, action) => {
+            return {
                 ...state,
-                firstName:action.payload.firstName,
-                lastName:action.payload.lastName, 
-                fundraiseText:action.payload.fundraiseText,
+                actor: action.payload.actor
             }
         },
-        updateStep2: (state, action)=>{
-            return{
+        updateStep1: (state, action) => {
+            console.log(action)
+            return {
                 ...state,
-                twitter:action.payload.twitter,
-                discord:action.payload.discord,
-                name:action.payload.name,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
+                fundraiseText: action.payload.fundraiseText,
+            }
+        },
+        updateStep2: (state, action) => {
+            return {
+                ...state,
+                twitter: action.payload.twitter,
+                discord: action.payload.discord,
+                name: action.payload.name,
                 category: action.payload.category
             }
         },
-        updateStep3: (state, action)=>{
-            return{
+        updateStep3: (state, action) => {
+            return {
                 ...state,
                 amount: action.payload.amount
             }
         },
-        updateStep4:(state, action)=>{
-            return{
+        updateStep4: (state, action) => {
+            return {
                 ...state,
                 img: action.payload.img,
                 youtube: action.payload.youtube
             }
         },
-        updateStep5:(state,action)=>{
-            return{
+        updateStep5: (state, action) => {
+            return {
                 ...state,
-                fundraiseReason:action.payload.fundraiseReason
+                fundraiseReason: action.payload.fundraiseReason
             }
         }
     }
 })
 
 export default createProjectSlice.reducer
-export const {updateStep1, updateStep2, updateStep3, updateStep4, updateStep5
-                     } = createProjectSlice.actions
+export const {
+    updateActor,
+    updateStep1,
+    updateStep2,
+    updateStep3,
+    updateStep4,
+    updateStep5
+} = createProjectSlice.actions
