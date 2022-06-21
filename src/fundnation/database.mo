@@ -9,7 +9,6 @@ import Types "./types";
 import Text "mo:base/Text";
 
 module {
-  //creating types for variiables that will be used in the program 
   type NewUserProfile = Types.NewUserProfile;
   type NewProject = Types.NewProject;
   type Profile = Types.Profile;
@@ -19,8 +18,7 @@ module {
   type UserId = Types.UserId;
 //creating a class for the database 
   public class Directory() {
-
-    //creating immutable variables where data is going to be stored 
+  
     let userMapping = HashMap.HashMap<UserId, Profile>(1, isEqUserId, Principal.hash); 
     let projectMapping = HashMap.HashMap<ProjectId, Project>(1, isEqProjectId, Text.hash);
     let userToProjectsMapping = HashMap.HashMap<UserId, [ProjectId]>(1, isEqUserId, Principal.hash);
@@ -68,7 +66,6 @@ module {
       profiles.toArray();
     };
 
-    // Projects 
 
     public func createProject(userId: UserId, newProject: NewProject): Project {
       let project = makeProject(userId, newProject);
@@ -115,7 +112,6 @@ module {
                   //discordLink = "";
                   goal = 0;
                   id = projectId;
-                  //nftVolume = 0;
                   owner = userId;
                   rewards = "";
                   status = null;
@@ -124,7 +120,7 @@ module {
                   title = "";
                   //twitterLink = "";
                   walletId = "";
-                  //wetransferLink = "";
+
                 };
               };
               case (?project) { project };
@@ -160,7 +156,6 @@ module {
         title = project.title;
         //twitterLink = project.twitterLink;
         walletId = project.walletId;
-        //wetransferLink = project.wetransferLink;
       });
     };
     /*
@@ -203,8 +198,6 @@ module {
       };
     };
 
-    // Helpers
-
     func makeProfile(userId: UserId, profile: NewUserProfile): Profile {
       {
         bio = profile.bio;
@@ -234,7 +227,6 @@ module {
         title = project.title;
         //twitterLink = project.twitterLink;
         walletId = project.walletId;
-        //wetransferLink = project.wetransferLink;
       };
     };
 
