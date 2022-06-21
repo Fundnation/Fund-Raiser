@@ -16,15 +16,14 @@ module {
   type ProjectId = Types.ProjectId;
   type ProjectStatus = Types.ProjectStatus;
   type UserId = Types.UserId;
-//creating a class for the database 
+
   public class Directory() {
   
     let userMapping = HashMap.HashMap<UserId, Profile>(1, isEqUserId, Principal.hash); 
     let projectMapping = HashMap.HashMap<ProjectId, Project>(1, isEqProjectId, Text.hash);
     let userToProjectsMapping = HashMap.HashMap<UserId, [ProjectId]>(1, isEqUserId, Principal.hash);
 
-    // Users
-
+   
     public func createOne(userId: UserId, profile: NewUserProfile) {
       userMapping.put(userId, makeProfile(userId, profile));
     };
@@ -158,15 +157,7 @@ module {
         walletId = project.walletId;
       });
     };
-    /*
-    public query func seeProjetcs() {
-      for(id) in projectMapping.entries(){
-        return projectMapping.get(id)
-      }
-      
-    }*/
 
-    // Upgrade helpers
 
     public func getUserArray() : [(UserId, Profile)] {
       Iter.toArray(userMapping.entries())
