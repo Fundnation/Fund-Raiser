@@ -6,11 +6,7 @@
             "type": "motoko"
         },
 
-        "ledger": {
-            "type": "custom",
-            "wasm": "ledger.wasm",
-            "candid": "ledger.public.did"
-        },
+
         "fundnatioin_assets": {
             "dependencies": ["fundnation"],
             "frontend": {
