@@ -74,10 +74,6 @@ module {
 
   public type MarketplaceLinks = [MarketplaceLink];
 
-  public type NFTInfo = {
-        number      : Nat;
-        priceE8S    : Nat;
-    };
 
     public type AccountId           = Blob;
     public type AccountIdText       = Text;
@@ -104,15 +100,5 @@ module {
         created_at_time : Time.Time;
     };
 
-    // ESCROW STATS
-    public type NFTStats = {
-        number          : Nat;
-        priceE8S        : Nat;
-        sold            : Nat;
-        openSubaccounts : Nat;
-    };
-    public type EscrowStats         = {
-        endTime     : Time.Time;
-        nftStats    : [NFTStats];
-    };
+  
 };
