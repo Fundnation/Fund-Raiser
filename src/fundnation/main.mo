@@ -15,8 +15,7 @@ import Nat64            "mo:base/Nat64";
 import Time             "mo:base/Time";
 import Buffer           "mo:base/Buffer";
 
-actor FundNation {
-    // Defining types 
+actor FundNation { 
     type NewUserProfile = Types.NewUserProfile;
     type NewProject = Types.NewProject;
     type Profile = Types.Profile;
@@ -27,9 +26,7 @@ actor FundNation {
     type UserId = Types.UserId;
 
     type EMProjectId = Nat;
-    type EMCanisterId = Principal;
-
-    // Stable vars used for upgrading 
+    type EMCanisterId = Principal; 
 
     stable var users        : [(UserId, Profile)]               = [];
     stable var projects     : [(ProjectId, Project)]            = [];
@@ -72,17 +69,12 @@ actor FundNation {
         Trie.get<ProjectId, Date>(launchDates, getProjectIdkey(pid), eqDate);
     };
 
-    // Healthcheck
-
     public func healthcheck(): async Bool { true };
-
-    // Testing
 
     public shared(msg) func greet(): async Text {
         "Hello " # Utils.getProfile(db, msg.caller).firstName # "!"
     };
 
-    // Profiles
 
     public shared query(msg) func getMyProfile(): async Profile {
         Utils.getProfile(db, msg.caller)
@@ -110,8 +102,6 @@ actor FundNation {
     public query func searchProfiles(term: Text): async [Profile] {
         db.findUserBy(term)
     };
-
-    // Projects
 
     public shared query(msg) func getMyProjects() : async [Project] {
         db.getProjects(msg.caller)
@@ -181,8 +171,6 @@ actor FundNation {
         };
     };
 
-    // Project statuses
-
     public shared(msg) func approveProject(pid: ProjectId): async () {
         assert(Utils.isAdmin(msg.caller));
         switch (db.getProject(pid)) {
@@ -237,8 +225,6 @@ actor FundNation {
             case null { throw Error.reject("No project with this id.") };
         };
     };
-
-    // Project whitelists
 
     stable var whitelists   : Trie.Trie<ProjectId, [Principal]> = Trie.empty();
 
@@ -301,8 +287,6 @@ actor FundNation {
     };
 
 
-    // Marketplace data
-
     type MarketplaceLinks = Types.MarketplaceLinks;
     stable var marketplaceLinks : Trie.Trie<ProjectId, MarketplaceLinks> = Trie.empty();
 
@@ -322,8 +306,6 @@ actor FundNation {
         Trie.get<ProjectId, MarketplaceLinks>(marketplaceLinks, projectIdKey(pid), Text.equal);
     };
 
-    // User Auth
-
     public shared query(msg) func getOwnId(): async UserId { msg.caller };
 
     public shared query(msg) func getOwnIdText(): async Text { Principal.toText(msg.caller) };
@@ -331,12 +313,12 @@ actor FundNation {
     public shared query(msg) func isAdmin(): async Bool {
         Utils.isAdmin(msg.caller)
     };
-    //pay
+    
     type AccountBalanceArgs = Types.AccountBalanceArgs;  // defining datatypes
     type ICPTs = Types.ICPTs;
     type SendArgs = Types.SendArgs;
 
-    let FEE : Nat64 = 15_000;
+    let FEE : Nat64 = 5_000;
     let FundNation_ACCOUNT = "7db8cbc2ff6e575b414218d96b991ac0dee483509dc78c46b373bf8bf2f9f00d";
 
 
