@@ -1,4 +1,16 @@
-# escrow_manager
+##This is Foundation Project Repository:
+Fast, Simple, secure and decentralized crowdfunding application on the internet computer blockchain.
+The MVP of Foundation currently enables people to create fundraising campaigns  to fund celebrations and/or to fund solutions to life challenges.
+In the future, people should also be able to donate NFTs(audio, videos, animations,images) in order to provide emotional support to victims.
+Also,
+As time goes on, we may consider additional functionalities for;
+1. Equity-based crowdfunding.
+2. Peer-to-Peer marketplace lending.
+3. Initial Coin Offering/digital certificates.
+4. NFT ticketing  via IC for events.
+5. Voting/Opinion Poll functions
+6. Report functions.
+About escrow_manager,
 
 Welcome to your new escrow_manager project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
 
