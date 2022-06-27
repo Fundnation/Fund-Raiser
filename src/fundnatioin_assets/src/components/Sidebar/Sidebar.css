@@ -1,0 +1,10 @@
+@media screen and (max-width:520px) {
+    .sidebar{
+        display: block !important;
+    }
+}
+
+.close-icon{
+    font-size: 30px;
+    color: rgba(194, 15, 162, 1);
+}
